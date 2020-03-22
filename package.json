@@ -1,0 +1,42 @@
+{
+  "name": "docebo",
+  "version": "1.0.0",
+  "description": "Serverless API for Retrieving the Organizational Chart",
+  "scripts": {
+    "start": "node -r ts-node/register server.ts",
+    "debug": "nodemon --inspect=0.0.0.0:9229 -r ts-node/register --exec node server.ts",
+    "test": "mocha -r ts-node/register ./tests/*.spec.ts --exit"
+  },
+  "keywords": [
+    "organizational chart",
+    "nested set model",
+    "serverless"
+  ],
+  "author": "Birant Altinel",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@types/mysql": "^2.15.9",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.0",
+    "mysql": "^2.18.1",
+    "serverless": "^1.65.0",
+    "sinon": "^9.0.0",
+    "sql-template-strings": "^2.2.2",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
+    "tslint-config-standard": "^9.0.0",
+    "typescript": "^3.8.3",
+    "util": "^0.12.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.46",
+    "@types/chai": "^4.2.9",
+    "@types/mocha": "^7.0.1",
+    "@types/node": "^13.7.7",
+    "@types/serverless": "^1.18.5",
+    "@types/sinon": "^7.5.2",
+    "nodemon": "^2.0.2",
+    "serverless-offline": "^5.12.1",
+    "serverless-plugin-typescript": "^1.1.9"
+  }
+}

@@ -1,0 +1,23 @@
+service: docebo-organizational-chart
+
+package:
+  exclude:
+    - node_modules/**/*
+  include:
+    - src/**/*
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+provider:
+    name: aws
+    runtime: nodejs12.x
+  
+functions:
+    getOrganizationalChart:
+        handler: src/handler.getOrganizationalChart
+        events:
+        - http:
+            path: docebo/organizationalChart
+            method: get
