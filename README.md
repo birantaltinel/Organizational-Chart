@@ -36,7 +36,7 @@ Run the following commands from your terminal:
 2. npm install
 3. serverless offline
 
-The HTTP endpoint will be reachable at `http://localhost:3000/docebo/organizationalChart`
+The HTTP endpoint will be reachable at `http://localhost:3000/nodes/{nodeId}/children`
 
 ### Deploy to AWS lambda
 
