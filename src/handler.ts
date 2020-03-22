@@ -1,5 +1,5 @@
 import { Handler } from 'aws-lambda';
-import { GetNodesRequest } from './models/GetNodesRequest';
+import { GetNodesRequestQuery, GetNodesRequestPath } from './models/GetNodesRequest';
 import { GetNodesResponse } from './models/GetNodesResponse';
 import { getChildNodes, getNumberOfChildren } from './service';
 import { AllowedLanguages } from './models/Language';
@@ -10,10 +10,11 @@ import { AllowedLanguages } from './models/Language';
  */
 export const getOrganizationalChart: Handler = async (event, _context, _callback) => {
     try{
-        const getNodesRequest: GetNodesRequest = event.multiValueQueryStringParameters;
-        const nodeId = Number(getNodesRequest?.node_id?.[0]);
-        const language = getNodesRequest?.language?.[0];
-        const searchKeyword = getNodesRequest?.search_keyword?.[0];
+        const getNodesRequestQuery: GetNodesRequestQuery = event.multiValueQueryStringParameters;
+        const getNodesRequestPath: GetNodesRequestPath = event.pathParameters;
+        const nodeId = Number(getNodesRequestPath?.node_id);
+        const language = getNodesRequestQuery?.language?.[0];
+        const searchKeyword = getNodesRequestQuery?.search_keyword?.[0];
 
         // Check the parameters for all forbidden cases
         if(!language){
@@ -25,14 +26,14 @@ export const getOrganizationalChart: Handler = async (event, _context, _callback
         if(!AllowedLanguages.includes(language)){
             return createErrorResponseWith(400, 'Invalid language parameter');
         }
-        if(getNodesRequest.page_num?.[0]) {
-            const pageNum = Number(getNodesRequest.page_num?.[0]);
+        if(getNodesRequestQuery.page_num?.[0]) {
+            const pageNum = Number(getNodesRequestQuery.page_num?.[0]);
             if(isNaN(pageNum) || !Number.isInteger(pageNum) || pageNum < 0){
                 return createErrorResponseWith(400, 'Invalid page number requested');
             }
         }
-        if(getNodesRequest.page_size?.[0]) {
-            const pageSize = Number(getNodesRequest.page_size?.[0]);
+        if(getNodesRequestQuery.page_size?.[0]) {
+            const pageSize = Number(getNodesRequestQuery.page_size?.[0]);
             if(isNaN(pageSize) || !Number.isInteger(pageSize) || pageSize < 0 || pageSize > 1000){
                 return createErrorResponseWith(400, 'Invalid page size requested');
             }
@@ -42,8 +43,8 @@ export const getOrganizationalChart: Handler = async (event, _context, _callback
             nodeId,
             language,
             searchKeyword,
-            pageNum: getNodesRequest.page_num?.[0] ? Number(getNodesRequest.page_num?.[0]) : undefined,
-            pageSize: getNodesRequest.page_size?.[0] ? Number(getNodesRequest.page_size?.[0]) : undefined,
+            pageNum: getNodesRequestQuery.page_num?.[0] ? Number(getNodesRequestQuery.page_num?.[0]) : undefined,
+            pageSize: getNodesRequestQuery.page_size?.[0] ? Number(getNodesRequestQuery.page_size?.[0]) : undefined,
         }
 
         const childNodes = await getChildNodes(childNodeSearchParameters);

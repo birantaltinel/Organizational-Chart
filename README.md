@@ -44,8 +44,3 @@ The HTTP endpoint will be reachable at `http://localhost:3000/docebo/organizatio
 2. npm install
 3. serverless config credentials --provider aws --key YOUR_AWS_KEY_ID --secret YOUR_AWS_SECRET_KEY
 4. serverless deploy
-
-TODO:
-
-- change the structure according to the new API documentation
-- initialize git project

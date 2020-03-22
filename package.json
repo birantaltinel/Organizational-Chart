@@ -1,5 +1,5 @@
 {
-  "name": "docebo",
+  "name": "organizational_chart",
   "version": "1.0.0",
   "description": "Serverless API for Retrieving the Organizational Chart",
   "scripts": {

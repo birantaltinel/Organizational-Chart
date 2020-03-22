@@ -1,4 +1,4 @@
-service: docebo-organizational-chart
+service: organizational-chart
 
 package:
   exclude:
@@ -19,5 +19,5 @@ functions:
         handler: src/handler.getOrganizationalChart
         events:
         - http:
-            path: docebo/organizationalChart
+            path: /nodes/{node_id}/children
             method: get

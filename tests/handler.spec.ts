@@ -39,8 +39,10 @@ describe('test getOrganizationalChart', () => {
   it('should succeed', async () => {
     const callback = sinon.spy();
     const event = {
+      pathParameters: {
+        node_id: '5',
+      },
       multiValueQueryStringParameters: {
-        node_id: [5],
         language: ['english'],
         search_keyword: ['Managers'],
         page_num: [0],
@@ -66,8 +68,8 @@ describe('test getOrganizationalChart', () => {
   it('should fail if the request is invalid', async () => {
     const callback = sinon.spy();
     const event = {
+      pathParameters: null, // node_id missing
       multiValueQueryStringParameters: {
-        // node_id missing
         language: ['english'],
         search_keyword: ['Managers'],
         page_num: [0],
@@ -89,8 +91,10 @@ describe('test getOrganizationalChart', () => {
     getNodesStub.rejects();
     const callback = sinon.spy();
     const event = {
+      pathParameters: {
+        node_id: '5',
+      },
       multiValueQueryStringParameters: {
-        node_id: [5],
         language: ['english'],
         search_keyword: ['Managers'],
         page_num: [0],

@@ -9,7 +9,7 @@ export async function getChildNodes(
   childNodeSearchParameters: ChildNodeSearchParameters
 ): Promise<NodesWithName> {
   const db = new DBConnection();
-  return await db.getChildNodesBy(
+  return db.getChildNodesBy(
     childNodeSearchParameters.nodeId,
     childNodeSearchParameters.language,
     childNodeSearchParameters.searchKeyword,

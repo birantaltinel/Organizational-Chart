@@ -1,9 +1,9 @@
-import * as db from "mysql";
-import { promisify } from "util";
-import { SQL } from "sql-template-strings";
+import * as db from 'mysql';
+import { promisify } from 'util';
+import { SQL } from 'sql-template-strings';
 
-import { NodesWithName } from "./DbModel";
-import { dbCredentials } from "../../env.json";
+import { NodesWithName } from './DbModel';
+import { dbCredentials } from '../../env.json';
 
 export class DBConnection {
   connection: db.Connection;
@@ -23,7 +23,7 @@ export class DBConnection {
    */
   public async getChildNodesBy(
     nodeId: number,
-    language: string = "english",
+    language: string = 'english',
     keyword?: string,
     pageNumber: number = 0,
     pageSize: number = 100
